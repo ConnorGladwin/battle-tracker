@@ -248,7 +248,8 @@ input[type=number]::-webkit-inner-spin-button {
     margin-top: -30vh;
   }
   .title {
-    position: absolute
+    position: absolute;
+    top: 10vh;
   }
   .container {
     display: flex;
