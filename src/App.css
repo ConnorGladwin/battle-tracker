@@ -41,7 +41,6 @@ input[type=number]::-webkit-inner-spin-button {
   transition: .3s;
   color: var(--blood-red);
   animation: shake .3s;
-
 }
 
 .container {
@@ -51,6 +50,7 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
 }
 
+/* @media (min-width: 600px) { */
 .controlBar {
   display: flex;
   justify-content: space-evenly;
@@ -99,9 +99,6 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  font-size: 15px;
 }
 
 .removeBtn:hover {
@@ -109,16 +106,38 @@ input[type=number]::-webkit-inner-spin-button {
   background-color: var(--blood-red);
 }
 
+.removeAll {
+  height: 40px;
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;    
+  background-color: var(--light-base);
+  border-radius: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.removeAll:hover {
+  transition: 0.5s !important;
+  background-color: var(--blood-red) !important;
+}
+
 .listItem { 
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 60px;
+  height: 40px;
   width: 450px;
+  padding: 10px;
   margin: 10px 0;    
   background-color: var(--light-base);
   border-radius: 10px;
   border: 2px solid transparent;
+  transition: 0.3s;
 }
 
 .listItem:hover {
@@ -139,7 +158,7 @@ input[type=number]::-webkit-inner-spin-button {
   border: 2px solid var(--dark-base);
   border-radius: 5px;
   height: 30px;
-  width: 30px;
+  width: 36px;
   margin: 20px;
   text-align: center;
   vertical-align: middle;
@@ -239,6 +258,7 @@ input[type=number]::-webkit-inner-spin-button {
 .dead .remove {
   fill: var(--dark-base);
 }
+/* } */
 
 @media (max-width: 1000px) {
   body {
@@ -246,17 +266,22 @@ input[type=number]::-webkit-inner-spin-button {
     height: 100vh;
     width: 100vw;
     margin-top: -30vh;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
   }
   .title {
     position: absolute;
-    top: 10vh;
+    top: 5vh;
   }
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 20vh;
+    top: 25vh;
   }
   .listContainer {
     width: 100vw;
@@ -266,14 +291,15 @@ input[type=number]::-webkit-inner-spin-button {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    
   }
   .inputs {
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: space-evenly;
     height: 60px;
-    width: 95vw;
-    margin: 10px 20px;    
+    width: 90vw;
+    margin: 0px 20px;
     background-color: var(--light-base);
     border-radius: 10px;
     border: 2px solid transparent;
@@ -283,10 +309,32 @@ input[type=number]::-webkit-inner-spin-button {
     align-items: center;
     justify-content: space-evenly;
     height: 60px;
-    width: 95vw;
-    margin: 10px 0;    
+    width: 90vw;
+    padding: 0 15px;  
     background-color: var(--light-base);
     border-radius: 10px;
     border: 2px solid transparent;
+    transition: none !important;
+  }
+  .name {
+    font-size: 1.2rem;
+  }
+  .initiative {
+    font-size: 1.2rem;
+    min-width: 36px;
+    padding: 0 5px
+  }
+  div.name {
+    width: auto;
+    min-width: 90px;
+  }
+  div.initiative {
+    left: 10%;
+    width: 26px;
+  }
+  .removeAll {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
   }
 }
