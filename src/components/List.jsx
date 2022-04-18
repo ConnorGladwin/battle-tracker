@@ -73,10 +73,10 @@ export default function List() {
     setId(initialId);
   }
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('list'));
-    setList(items);
-  }, []);
+  // useEffect(() => {
+  //   const items = JSON.parse(localStorage.getItem('list'));
+  //   setList(items);
+  // }, []);
 
   return (
     <div className="listContainer">
