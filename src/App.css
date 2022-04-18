@@ -50,7 +50,6 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
 }
 
-/* @media (min-width: 600px) { */
 .controlBar {
   display: flex;
   justify-content: space-evenly;
@@ -147,12 +146,6 @@ input[type=number]::-webkit-inner-spin-button {
   border: 2px solid var(--accent-grey);
 }
 
-.listItem:focus {
-  transition: 0.1s;
-  transform: scale(1.05);
-  border: 2px solid var(--accent-blue);
-}
-
 .initiative {
   right: 30px;
   background-color: transparent;
@@ -225,24 +218,7 @@ input[type=number]::-webkit-inner-spin-button {
   transition: transform 1s;
 }
 
-.remove:hover {
-  animation: shake 0.2s;
-  fill: var(--blood-red);
-}
 
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
 
 @keyframes noInput {
   25% {transform: translate(-25px);}
@@ -259,7 +235,33 @@ input[type=number]::-webkit-inner-spin-button {
 .dead .remove {
   fill: var(--dark-base);
 }
-/* } */
+
+@media (min-width: 801px) {
+  .listItem:focus {
+    transition: 0.1s;
+    transform: scale(1.05);
+    border: 2px solid var(--accent-blue);
+  }
+
+  .remove:hover {
+    animation: shake 0.2s;
+    fill: var(--blood-red);
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+}
 
 @media (max-width: 800px) {
   body {
@@ -267,11 +269,6 @@ input[type=number]::-webkit-inner-spin-button {
     height: 100vh;
     width: 100vw;
     margin-top: -30vh;
-    -webkit-transition: none !important;
-    -moz-transition: none !important;
-    -o-transition: none !important;
-    -ms-transition: none !important;
-    transition: none !important;
   }
   .title {
     position: absolute;
@@ -287,7 +284,7 @@ input[type=number]::-webkit-inner-spin-button {
   .listContainer {
     width: 100vw;
     top: 30vh;
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;

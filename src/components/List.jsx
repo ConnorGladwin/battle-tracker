@@ -71,12 +71,13 @@ export default function List() {
     console.log('all removed');
     setList(initialList);
     setId(initialId);
+    localStorage.setItem('list', JSON.stringify(initialList));
   }
 
-  // useEffect(() => {
-  //   const items = JSON.parse(localStorage.getItem('list'));
-  //   setList(items);
-  // }, []);
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('list'));
+    setList(items);
+  }, []);
 
   return (
     <div className="listContainer">
