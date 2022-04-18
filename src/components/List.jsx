@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { add, remove, dead } from '../utils/SvgPaths';
 import '../App.css';
 
-// TODO: address a11ty issues with onclick event
+// TODO:
 
 export default function List() {
   const initialList = [];
@@ -18,11 +18,12 @@ export default function List() {
 
   function handleAdd(e) {
     e.preventDefault();
+    const inputBar = document.querySelector('.inputBar');
     const initiative = e.target.initiative.value;
     const name = e.target.name.value;
     const health = e.target.health.value;
     if (initiative === '' || name === '' || health === '') {
-      console.log('nope');
+      inputBar.classList.add('infoMissing');
     } else {
       const newListItem = {
         id,
@@ -36,6 +37,9 @@ export default function List() {
       localStorage.setItem('list', JSON.stringify(list));
     }
     setCount(count + 1);
+    setTimeout(() => {
+      inputBar.classList = 'listItem inputBar';
+    }, 500);
   }
 
   function handleRemove(itemId) {
@@ -48,13 +52,12 @@ export default function List() {
   function checkHealth(item, value) {
     const newHealth = value.target.value;
     const element = document.getElementById(item.id);
-    if (newHealth == 0 && newHealth !== '') {
-      console.log('ded');
+    if (newHealth <= 0 && newHealth !== '') {
       element.classList.add('dead');
     } else if (newHealth > 0 && newHealth !== '') {
       element.classList = 'listItem';
     } else {
-      console.log('not dead');
+      //
     }
     setCount(count + 1);
   }
@@ -75,13 +78,17 @@ export default function List() {
   }
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('list'));
-    setList(items);
+    if (localStorage.getItem(list)) {
+      const items = JSON.parse(localStorage.getItem('list'));
+      const maxId = Math.max(...items.map((o) => o.id), 0);
+      setList(items);
+      setId(maxId + 1);
+    }
   }, []);
 
   return (
     <div className="listContainer">
-      <form className="listItem" onSubmit={(e) => handleAdd(e)}>
+      <form className="listItem inputBar" onSubmit={(e) => handleAdd(e)}>
         <input
           className="initiative value"
           id="initiative"
@@ -95,50 +102,53 @@ export default function List() {
           type="text"
           name="name"
           autoComplete="off"
-          placeholder="name"
+          placeholder="Name"
         />
         <input
           className="health value"
           id="health"
           type="number"
           name="health"
-          placeholder="health"
+          placeholder="HP"
         />
         <button className="addBtn value" type="submit">
           {add}
         </button>
       </form>
       <ul>
-        {sortList().map((item) => (
-          <li
-            className="listItem"
-            id={item.id}
-            key={item.id}
-            tabIndex={item.id}
-          >
-            <div className="initiative" id="initiative">
-              {item.initiative}
-            </div>
-            <div className="name input" id="name">
-              {item.name}
-            </div>
-            <input
-              className="health"
-              id="health"
-              onChange={(value) => checkHealth(item, value)}
-              placeholder={item.health}
-            />
-            <div
-              className="remove"
-              role="button"
-              tabIndex="0"
-              onKeyPress={() => handleRemove(item.id)}
-              onClick={() => handleRemove(item.id)}
+        {sortList()
+          .reverse()
+          .map((item) => (
+            <li
+              className="listItem"
+              id={item.id}
+              key={item.id}
+              tabIndex={item.initiative}
             >
-              {remove}
-            </div>
-          </li>
-        ))}
+              <div className="initiative" id="initiative">
+                {item.initiative}
+              </div>
+              <div className="name input" id="name">
+                {item.name}
+              </div>
+              <input
+                className="health"
+                id="health"
+                tabIndex="0"
+                onChange={(value) => checkHealth(item, value)}
+                placeholder={item.health}
+              />
+              <div
+                className="remove"
+                role="button"
+                tabIndex="0"
+                onKeyPress={() => handleRemove(item.id)}
+                onClick={() => handleRemove(item.id)}
+              >
+                {remove}
+              </div>
+            </li>
+          ))}
       </ul>
       <div
         className="removeAll"
