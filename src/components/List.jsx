@@ -60,8 +60,11 @@ export default function List() {
   }
 
   function sortList() {
-    const sortedList = list.sort((a, b) => a.initiative - b.initiative);
-    return sortedList;
+    if (list?.length >= 1) {
+      const sortedList = list.sort((a, b) => a.initiative - b.initiative);
+      return sortedList;
+    }
+    return [];
   }
 
   function handleRemoveAll() {

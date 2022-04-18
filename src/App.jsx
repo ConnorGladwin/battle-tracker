@@ -4,8 +4,8 @@ import './App.css';
 
 function funTitle() {
   const title = 'Battle!';
-  const funTitle = Array.from(title);
-  return funTitle.map((i) => <p className="funTitle">{i}</p>);
+  const animatedTitle = Array.from(title);
+  return animatedTitle.map((i) => <p className="funTitle">{i}</p>);
 }
 
 function App() {
